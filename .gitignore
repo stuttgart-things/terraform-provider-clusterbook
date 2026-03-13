@@ -1,0 +1,6 @@
+terraform-provider-clusterbook
+*.exe
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraformrc
