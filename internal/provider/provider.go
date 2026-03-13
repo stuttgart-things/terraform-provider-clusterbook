@@ -29,7 +29,7 @@ func (p *clusterbookProvider) Metadata(_ context.Context, _ provider.MetadataReq
 
 func (p *clusterbookProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Description: "Terraform provider for clusterbook IPAM",
+		MarkdownDescription: "Terraform provider for [clusterbook](https://github.com/stuttgart-things/clusterbook) IPAM - manage IP address assignments and network pools.",
 		Attributes: map[string]schema.Attribute{
 			"url": schema.StringAttribute{
 				Description: "The URL of the clusterbook API (e.g. http://localhost:8080)",
