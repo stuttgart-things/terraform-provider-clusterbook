@@ -23,17 +23,18 @@ func New(url string) *Client {
 // Network types
 
 type PoolInfo struct {
-	NetworkKey string  `json:"network_key"`
-	Total      float64 `json:"total"`
-	Available  float64 `json:"available"`
-	Assigned   float64 `json:"assigned"`
-	Pending    float64 `json:"pending"`
+	NetworkKey string  `json:"NetworkKey"`
+	Total      float64 `json:"Total"`
+	Available  float64 `json:"Available"`
+	Assigned   float64 `json:"Assigned"`
+	Pending    float64 `json:"Pending"`
 }
 
 type IPEntry struct {
-	IP      string `json:"ip"`
-	Status  string `json:"status"`
-	Cluster string `json:"cluster"`
+	IP      string `json:"IP"`
+	Digit   string `json:"Digit"`
+	Status  string `json:"Status"`
+	Cluster string `json:"Cluster"`
 }
 
 type ClusterSummary struct {
