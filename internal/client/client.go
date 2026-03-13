@@ -85,9 +85,10 @@ func (c *Client) DeleteNetwork(networkKey string) error {
 	return c.delete(fmt.Sprintf("/api/v1/networks/%s", networkKey))
 }
 
-// AssignIP assigns an IP in a network to a cluster.
-func (c *Client) AssignIP(networkKey, cluster, status string, createDNS bool) (*AssignResponse, error) {
+// AssignIP assigns a specific IP in a network to a cluster.
+func (c *Client) AssignIP(networkKey, ip, cluster, status string, createDNS bool) (*AssignResponse, error) {
 	body := map[string]interface{}{
+		"ip":         ip,
 		"cluster":    cluster,
 		"status":     status,
 		"create_dns": createDNS,
@@ -97,6 +98,31 @@ func (c *Client) AssignIP(networkKey, cluster, status string, createDNS bool) (*
 		return nil, err
 	}
 	return &resp, nil
+}
+
+// FindAndAssignIP finds an available IP and assigns it to a cluster.
+func (c *Client) FindAndAssignIP(networkKey, cluster, status string, createDNS bool) (string, error) {
+	entries, err := c.GetNetworkIPs(networkKey)
+	if err != nil {
+		return "", fmt.Errorf("listing IPs: %w", err)
+	}
+
+	var availableIP string
+	for _, e := range entries {
+		if e.Status == "" && e.Cluster == "" {
+			availableIP = e.IP
+			break
+		}
+	}
+	if availableIP == "" {
+		return "", fmt.Errorf("no available IPs in network %s", networkKey)
+	}
+
+	_, err = c.AssignIP(networkKey, availableIP, cluster, status, createDNS)
+	if err != nil {
+		return "", err
+	}
+	return availableIP, nil
 }
 
 type AssignResponse struct {
