@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: terraform-provider-clusterbook
+    main: .
+    binary: terraform-provider-clusterbook
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s
+      - -w
+      - -extldflags=-static
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - Merge pull request
+      - Merge branch
+
+release:
+  github:
+    owner: stuttgart-things
+    name: terraform-provider-clusterbook
+  draft: false
+  prerelease: auto
+  footer: |
+    ## Installation
+
+    ### Local Install
+    Download the binary for your platform and place it in:
+    ```
+    ~/.terraform.d/plugins/registry.terraform.io/stuttgart-things/clusterbook/<VERSION>/<OS>_<ARCH>/
+    ```
+
+    ---
+    Released by [GoReleaser](https://github.com/goreleaser/goreleaser).
