@@ -59,9 +59,13 @@ func (p *clusterbookProvider) Configure(ctx context.Context, req provider.Config
 func (p *clusterbookProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewIPAssignmentResource,
+		NewNetworkResource,
 	}
 }
 
 func (p *clusterbookProvider) DataSources(_ context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return []func() datasource.DataSource{
+		NewClusterDataSource,
+		NewNetworksDataSource,
+	}
 }
