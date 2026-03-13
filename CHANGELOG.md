@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/stuttgart-things/terraform-provider-clusterbook/compare/v0.2.0...v0.2.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* correct JSON field mapping for clusterbook API ([2f52d3e](https://github.com/stuttgart-things/terraform-provider-clusterbook/commit/2f52d3e191aa7fb77bdbecd93c11d4a899dafa20))
+
 # [0.2.0](https://github.com/stuttgart-things/terraform-provider-clusterbook/compare/v0.1.0...v0.2.0) (2026-03-13)
 
 
