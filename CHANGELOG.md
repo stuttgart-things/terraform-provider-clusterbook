@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/stuttgart-things/terraform-provider-clusterbook/compare/v0.1.0...v0.2.0) (2026-03-13)
+
+
+### Features
+
+* add TechDocs pages and documentation ([17b30ea](https://github.com/stuttgart-things/terraform-provider-clusterbook/commit/17b30ea61d9e535be06634884f16a109a37374bd))
+
 # [0.1.0](https://github.com/stuttgart-things/terraform-provider-clusterbook/compare/v0.0.0...v0.1.0) (2026-03-13)
 
 
